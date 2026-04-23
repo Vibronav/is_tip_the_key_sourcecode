@@ -1,0 +1,63 @@
+# config file will be saved with all results after training
+seed: 128
+logs_dir: "runs"
+run_suffix: "1"
+description: "Sample" # For any other information that can be usefull after some time. Like what was inside dataset, slices durations etc.
+
+data:
+  root: needlenet/data
+  name: cnnSpectrogram
+  target_sr: 48000
+  min_freq: 0
+  max_freq: 24000
+  n_ffts: [512, 1024, 2048]
+  hop_length: 32
+  n_mels: 50
+  max_db: 80
+  spectrogram_type: mel
+  normalizing_method: global # options: global, local, load
+  power: 2
+  spectrogram_normalized: False
+  augment_train: true
+  augment_valid: false
+  augment_test: false
+  attenuation_level: 0.0
+  labels_to_augment:
+    - Chicken
+    - Zucchini
+
+relevance:
+  top_k: 0.5
+
+model:
+  name: cnnResnet18
+  pretrained: true
+
+training:
+  batch_size: 128
+  num_workers: 8
+  max_epochs: 1
+
+  lr: 0.001
+  min_lr: 0.001
+
+  monitor: "val/f1_macro"
+  monitor_mode: "max"
+  early_stop_patience: 1000
+
+  loss: cross_entropy
+  optimizer: adamw
+  scheduler: cosineannealinglr
+
+metrics:
+  list:
+    - name: accuracy
+    - name: f1
+      average: macro
+    - name: f1
+      average: weighted
+    - name: precision
+      average: none
+    - name: recall
+      average: none
+    

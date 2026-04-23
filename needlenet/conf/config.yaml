@@ -1,0 +1,59 @@
+data:
+  augment_test: false
+  augment_train: true
+  augment_valid: false
+  hop_length: 32
+  labels_to_augment:
+  - Chicken
+  - Zucchini
+  max_db: 80
+  max_freq: 24000
+  max_gain: 5
+  min_freq: 0
+  min_gain: -5
+  n_ffts:
+  - 512
+  - 1024
+  - 2048
+  n_mels: 50
+  name: cnnSpectrogram
+  normalizing_method: global
+  pitch_shift_max: 3
+  pitch_shift_min: -3
+  power: 2
+  root: needlenet/data
+  spectrogram_normalized: false
+  spectrogram_type: mel
+  target_sr: 48000
+description: null
+logs_dir: runs
+metrics:
+  list:
+  - name: accuracy
+  - average: macro
+    name: f1
+  - average: weighted
+    name: f1
+  - average: none
+    name: precision
+  - average: none
+    name: recall
+model:
+  name: cnnResnet50
+  pretrained: true
+relevance:
+  top_k: 0.8
+run_suffix: '7_1'
+seed: 2
+training:
+  batch_size: 64
+  early_stop_patience: 1000
+  loss: cross_entropy
+  lr: 0.00001
+  max_epochs: 1
+  min_lr: 0.00001
+  monitor: val/f1_macro
+  monitor_mode: max
+  num_workers: 8
+  optimizer: adamw
+  scheduler: cosineannealinglr

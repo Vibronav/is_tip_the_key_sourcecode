@@ -1,0 +1,12 @@
+[
+  {
+    "class": "Zucchini",
+    "events": [
+      1,
+      2
+    ],
+    "slice_ms": 100,
+    "overlap": 0.25,
+    "padding": 0.0
+  }
+]

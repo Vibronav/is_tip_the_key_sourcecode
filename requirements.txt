@@ -1,0 +1,11 @@
+aiohttp==3.12.15
+matplotlib==3.10.6
+pandas==2.3.2
+pip-chill==1.0.3
+pytorch-lightning==2.5.5
+rich==14.1.0
+scikit-learn==1.7.2
+soundfile==0.13.1
+tensorboard==2.20.0
+torchaudio-augmentations==0.2.4
+torchvision==0.23.0
