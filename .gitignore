@@ -1,0 +1,6 @@
+*.log
+*.pid
+*.token
+node_modules/
+.env
+__pycache__/
